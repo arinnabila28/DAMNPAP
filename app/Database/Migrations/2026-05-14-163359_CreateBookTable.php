@@ -4,11 +4,10 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateBook extends Migration
+class CreateBookTable extends Migration
 {
     public function up()
     {
-        //
         $this->forge->addField([
             'id_book'    => ['type' => 'INT', 'constraint' => 11, 'auto_increment' => true],
             'code_book'  => ['type' => 'VARCHAR', 'constraint' => 20],
@@ -22,12 +21,13 @@ class CreateBook extends Migration
             'updated_at' => ['type' => 'DATETIME', 'null' => true],
             'deleted_at' => ['type' => 'DATETIME', 'null' => true],
         ]);
+
         $this->forge->addKey('id_book', true);
         $this->forge->createTable('books');
     }
 
     public function down()
     {
-        //
-         }
+        $this->forge->dropTable('books');
+    }
 }
