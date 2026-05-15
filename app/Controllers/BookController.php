@@ -31,7 +31,8 @@ class BookController extends BaseController
             'author_book' => $this->request->getPost('author_book'),
             'publisher_book' => $this->request->getPost('publisher_book'),
             'published_year' => $this->request->getPost('published_year'),
-            'description_book' => $this->request->getPost('description_book')
+            'description_book' => $this->request->getPost('description_book'),
+            'stock' => $this->request->getPost('stock'),
         ];
         if ($model->save($data)) {
             session()->setFlashdata('success', 'Buku berhasil disimpan!');
@@ -42,25 +43,93 @@ class BookController extends BaseController
 
     }
 
-    public function edit($id)
-    {
-        // script php untuk load data dari database
-        $data = [
-            'id'   => $id,
-            'title_book' => 'Judul Buku '.$id,
-            'author_book' => 'Penulis Buku '.$id,
-            'publisher_book' => 'Penerbit Buku '.$id,
-            'published_year' => '2023',
-            'stock' => '10'
-        ];
-        // end of script
-        return view('books/edit', $data);
+   public function edit($id)
+{
+    $model = new BookModel();
+    
+    // Ambil data asli dari database berdasarkan id_book
+    $book = $model->find($id);
+
+    // Cek jika data tidak ditemukan
+    if (!$book) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException('Buku dengan ID ' . $id . ' tidak ditemukan');
     }
 
-    public function update($id)
-    {
-        // script php untuk memperbarui data di database
-        // end of script
+    $data = [
+        'book' => $book
+    ];
+
+    return view('books/edit', $data);
+} 
+
+public function update($id)
+{
+    $model = new BookModel();
+
+    // Tangkap data dari input form (pastikan 'name' di HTML sudah sama)
+    $data = [
+        'code_book'        => $this->request->getPost('code_book'),
+        'isbn_book'        => $this->request->getPost('isbn_book'),
+        'title_book'       => $this->request->getPost('title_book'),
+        'author_book'      => $this->request->getPost('author_book'),
+        'publisher_book'   => $this->request->getPost('publisher_book'),
+        'published_year'   => $this->request->getPost('published_year'),
+        'description_book' => $this->request->getPost('description_book'),
+        'stock'            => $this->request->getPost('stock'),
+    ];
+
+    // Proses update berdasarkan ID
+    if ($model->update($id, $data)) {
+        session()->setFlashdata('success', 'Data buku berhasil diperbarui!');
         return redirect()->to('/list/books');
+    } else {
+        // Jika gagal, kembali ke halaman sebelumnya dengan pesan error
+        return redirect()->back()->withInput()->with('errors', $model->errors());
+    }
+}
+
+    public function delete($id)
+    {
+        $model = new BookModel();
+       if ($model->delete($id)) {
+        session()->setFlashdata('success', 'Buku berhasil dihapus!');
+    } else {
+        session()->setFlashdata('error', 'Gagal menghapus buku.');
+    }
+
+    return redirect()->to('/list/books');
+    }
+
+    public function trash ()
+    {
+        $model = new BookModel();
+        $data = [
+            'books' => $model->onlyDeleted()->findAll()
+        ];
+        return view('books/trash', $data);
+    }
+
+    public function restore($id)
+    {
+        $model = new BookModel();
+        if ($model->update($id, ['deleted_at' => null])) {
+            session()->setFlashdata('success', 'Buku berhasil dipulihkan!');
+        } else {
+            session()->setFlashdata('error', 'Gagal memulihkan buku.');
+        }
+
+        return redirect()->to('/book/trash');
+    }
+
+    public function purge($id)
+    {
+        $model = new BookModel();
+        if ($model->delete($id, true)) {
+            session()->setFlashdata('success', 'Buku berhasil dihapus permanen!');
+        } else {
+            session()->setFlashdata('error', 'Gagal menghapus buku permanen.');
+        }
+
+        return redirect()->to('/book/trash');
     }
 }

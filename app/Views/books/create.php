@@ -52,7 +52,7 @@
                 <input type="text" name="description_book" class="form-control" placeholder="Masukkan keterangan buku">
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary saveButton">Simpan</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
          </div>
     </form>

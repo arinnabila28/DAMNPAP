@@ -17,3 +17,8 @@ $routes->post('/create/book', 'BookController::store');
 
 $routes->get('/edit/book/(:num)', 'BookController::edit/$1');
 $routes->post('/update/book/(:num)', 'BookController::update/$1');
+$routes->get('/delete/book/(:num)', 'BookController::delete/$1');
+
+$routes->get('book/trash', 'BookController::trash');
+$routes->get('/restore/book/(:num)', 'BookController::restore/$1');
+$routes->get('/purge/book/(:num)', 'BookController::purge/$1');
