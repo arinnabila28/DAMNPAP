@@ -14,6 +14,14 @@ class BookController extends BaseController
         ];
         return view('books/index', $data);
     }
+
+    public function ajaxTable()
+    {
+        $bookModel = new BookModel();
+        $data['books']
+    
+        return view('books/_table', $data);
+    }
     
     public function create()
     {
