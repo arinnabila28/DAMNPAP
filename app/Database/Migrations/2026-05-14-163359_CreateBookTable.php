@@ -9,7 +9,7 @@ class CreateBookTable extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id_book'    => ['type' => 'INT', 'constraint' => 11, 'auto_increment' => true],
+            'id_book'    => ['type' => 'INT', 'constraint' => 11,'unsigned' => true, 'auto_increment' => true],
             'code_book'  => ['type' => 'VARCHAR', 'constraint' => 20],
             'isbn_book'  => ['type' => 'VARCHAR', 'constraint' => 30, 'null' => true],
             'title_book' => ['type' => 'VARCHAR', 'constraint' => 150],

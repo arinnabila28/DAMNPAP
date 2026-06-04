@@ -18,8 +18,7 @@ class BookController extends BaseController
     public function ajaxTable()
     {
         $bookModel = new BookModel();
-        $data['books']
-    
+        $data['books'] = $bookModel->findAll();
         return view('books/_table', $data);
     }
     
@@ -139,5 +138,21 @@ public function update($id)
         }
 
         return redirect()->to('/book/trash');
+    }
+
+    public function ajaxCreate()
+    {
+        
+        return view('books/modal_create'); 
+    }
+
+    public function ajaxEdit($id)
+    {
+        $model = new \App\Models\BookModel();
+        $data = [
+            'book' => $model->find($id)
+        ];
+        
+        return view('books/modal_edit', $data);
     }
 }

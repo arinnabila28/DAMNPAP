@@ -23,12 +23,24 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url('/list/users') ?>" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
+                    <a href="<?= base_url('/list/members') ?>" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
                         <p>Master Member</p>
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="<?= base_url('/list/peminjaman') ?>" class="nav-link">
+                        <i class="nav-icon fas fa-book-reader"></i>
+                        <p>Data Peminjaman</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= base_url('/list/pengembalian') ?>" class="nav-link">
+                        <i class="nav-icon fas fa-undo"></i>
+                        <p>Data Pengembalian</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
