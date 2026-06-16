@@ -51,3 +51,11 @@ $routes->get('/pengembalian/hapus/(:num)', 'PengembalianController::hapus/$1');
 $routes->post('/create/pengembalian', 'PengembalianController::simpanPengembalian');
 $routes->post('/update/pengembalian/(:num)', 'PengembalianController::update/$1');
 $routes->post('/delete/pengembalian/(:num)', 'PengembalianController::delete/$1');
+
+// Laporan Routes
+$routes->get('/laporan/buku', 'LaporanController::buku');
+$routes->get('/laporan/cetak-buku', 'LaporanController::cetakBuku');
+// Label Buku Routes
+$routes->get('/laporan/label-buku', 'LaporanController::labelBuku');
+$routes->get('/laporan/cetak-label-buku', 'LaporanController::cetakLabelBuku');
+$routes->get('/laporan/cetak-label-buku/(:num)', 'LaporanController::cetakLabelSatu/$1');
