@@ -56,7 +56,13 @@
                                 <p>Laporan Data Buku</p>
                             </a>
                         </li>
-                                                <li class="nav-item">
+                        <li class="nav-item">
+                            <a href="<?= base_url('/laporan/member') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Laporan Data Member</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= base_url('/laporan/label-buku') ?>" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Cetak Label Buku</p>

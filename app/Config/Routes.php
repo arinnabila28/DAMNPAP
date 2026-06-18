@@ -55,6 +55,8 @@ $routes->post('/delete/pengembalian/(:num)', 'PengembalianController::delete/$1'
 // Laporan Routes
 $routes->get('/laporan/buku', 'LaporanController::buku');
 $routes->get('/laporan/cetak-buku', 'LaporanController::cetakBuku');
+$routes->get('/laporan/member', 'LaporanController::member');
+$routes->get('/laporan/cetak-member', 'LaporanController::cetakMember');
 // Label Buku Routes
 $routes->get('/laporan/label-buku', 'LaporanController::labelBuku');
 $routes->get('/laporan/cetak-label-buku', 'LaporanController::cetakLabelBuku');

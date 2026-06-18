@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\BookModel;
+use App\Models\MemberModel;
 
 class LaporanController extends BaseController
 {
@@ -48,5 +49,23 @@ class LaporanController extends BaseController
         $data['title'] = 'Cetak Label Buku';
 
         return view('laporan/cetak_label_satu', $data);
+    }
+
+    public function member()
+    {
+        $memberModel = new MemberModel();
+        $data['members'] = $memberModel->findAll();
+        $data['title'] = 'Laporan Data Member';
+
+        return view('laporan/member', $data);
+    }
+
+    public function cetakMember()
+    {
+        $memberModel = new MemberModel();
+        $data['members'] = $memberModel->findAll();
+        $data['title'] = 'Laporan Data Member';
+
+        return view('laporan/cetak_member', $data);
     }
 }
