@@ -68,6 +68,12 @@
                                 <p>Cetak Label Buku</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('/laporan/label-member') ?>" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Cetak Kartu Member</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

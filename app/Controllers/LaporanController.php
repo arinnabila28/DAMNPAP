@@ -68,4 +68,31 @@ class LaporanController extends BaseController
 
         return view('laporan/cetak_member', $data);
     }
+
+    public function labelMember()
+    {
+        $memberModel = new MemberModel();
+        $data['members'] = $memberModel->findAll();
+        $data['title'] = 'Cetak Kartu Member';
+
+        return view('laporan/label_member', $data);
+    }
+
+    public function cetakLabelMember()
+    {
+        $memberModel = new MemberModel();
+        $data['members'] = $memberModel->findAll();
+        $data['title'] = 'Cetak Kartu Member';
+
+        return view('laporan/cetak_label_member', $data);
+    }
+
+    public function cetakLabelSatuMember($id)
+    {
+        $memberModel = new MemberModel();
+        $data['member'] = $memberModel->find($id);
+        $data['title'] = 'Cetak Kartu Member';
+
+        return view('laporan/cetak_label_satu_member', $data);
+    }
 }

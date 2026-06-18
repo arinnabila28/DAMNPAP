@@ -61,3 +61,7 @@ $routes->get('/laporan/cetak-member', 'LaporanController::cetakMember');
 $routes->get('/laporan/label-buku', 'LaporanController::labelBuku');
 $routes->get('/laporan/cetak-label-buku', 'LaporanController::cetakLabelBuku');
 $routes->get('/laporan/cetak-label-buku/(:num)', 'LaporanController::cetakLabelSatu/$1');
+// Label Member Routes
+$routes->get('/laporan/label-member', 'LaporanController::labelMember');
+$routes->get('/laporan/cetak-label-member', 'LaporanController::cetakLabelMember');
+$routes->get('/laporan/cetak-label-member/(:num)', 'LaporanController::cetakLabelSatuMember/$1');
